@@ -1,46 +1,45 @@
 /* Generated from orogen/lib/orogen/templates/tasks/Task.hpp */
 
-#ifndef SATCOMMS_KVH_TASK_TASK_HPP
-#define SATCOMMS_KVH_TASK_TASK_HPP
+#ifndef SATCOMMS_KVH_SATCOMMSSTATUSTASK_TASK_HPP
+#define SATCOMMS_KVH_SATCOMMSSTATUSTASK_TASK_HPP
 
-#include "satcomms_kvh/TaskBase.hpp"
+#include "satcomms_kvh/SatcommsStatusTaskBase.hpp"
 
-namespace satcomms_kvh{
+namespace satcomms_kvh {
 
-    /*! \class Task
-     * \brief The task context provides and requires services. It uses an ExecutionEngine to perform its functions.
-     * Essential interfaces are operations, data flow ports and properties. These interfaces have been defined using the oroGen specification.
-     * In order to modify the interfaces you should (re)use oroGen and rely on the associated workflow.
-     * Declare a new task context (i.e., a component)
-
-The corresponding C++ class can be edited in tasks/Task.hpp and
-tasks/Task.cpp, and will be put in the satcomms_kvh namespace.
+    /*! \class SatcommsStatusTask
+     * \brief The task context provides and requires services. It uses an ExecutionEngine
+     to perform its functions.
+     * Essential interfaces are operations, data flow ports and properties. These
+     interfaces have been defined using the oroGen specification.
+     * In order to modify the interfaces you should (re)use oroGen and rely on the
+     associated workflow.
+     *
      * \details
      * The name of a TaskContext is primarily defined via:
      \verbatim
      deployment 'deployment_name'
-         task('custom_task_name','satcomms_kvh::Task')
+         task('custom_task_name','satcomms_kvh::SatcommsStatusTask')
      end
      \endverbatim
-     *  It can be dynamically adapted when the deployment is called with a prefix argument.
+     *  It can be dynamically adapted when the deployment is called with a prefix
+     argument.
      */
-    class Task : public TaskBase
-    {
-	friend class TaskBase;
+    class SatcommsStatusTask : public SatcommsStatusTaskBase {
+        friend class SatcommsStatusTaskBase;
+
     protected:
-
-
-
     public:
-        /** TaskContext constructor for Task
-         * \param name Name of the task. This name needs to be unique to make it identifiable via nameservices.
-         * \param initial_state The initial TaskState of the TaskContext. Default is Stopped state.
+        /** TaskContext constructor for SatcommsStatusTask
+         * \param name Name of the task. This name needs to be unique to make it
+         * identifiable via nameservices. \param initial_state The initial TaskState of
+         * the TaskContext. Default is Stopped state.
          */
-        Task(std::string const& name = "satcomms_kvh::Task");
+        SatcommsStatusTask(std::string const& name = "satcomms_kvh::SatcommsStatusTask");
 
-        /** Default deconstructor of Task
+        /** Default deconstructor of SatcommsStatusTask
          */
-	~Task();
+        ~SatcommsStatusTask();
 
         /** This hook is called by Orocos when the state machine transitions
          * from PreOperational to Stopped. If it returns false, then the
@@ -99,8 +98,9 @@ tasks/Task.cpp, and will be put in the satcomms_kvh namespace.
          * before calling start() again.
          */
         void cleanupHook();
+
+        SatcommsStatusManager manager;
     };
 }
 
 #endif
-
