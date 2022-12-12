@@ -35,7 +35,7 @@ void SatcommsStatusTask::updateHook()
 {
     SatcommsStatusTaskBase::updateHook();
 
-    SatcommsStatus status = manager.gegetSatcommsStatus();
+    SatcommsStatus status = manager.getSatcommsStatus();
     _output.write(status);
 }
 void SatcommsStatusTask::errorHook()

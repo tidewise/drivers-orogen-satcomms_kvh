@@ -4,6 +4,7 @@
 #define SATCOMMS_KVH_SATCOMMSSTATUSTASK_TASK_HPP
 
 #include "satcomms_kvh/SatcommsStatusTaskBase.hpp"
+#include "satcomms_kvh/SatcommsStatusManager.hpp"
 
 namespace satcomms_kvh {
 
