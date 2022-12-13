@@ -23,7 +23,7 @@ bool SatcommsStatusTask::configureHook()
         return false;
 
     manager.setURL(_url.get());
-    manager.setTimeout(_timeout_miliseconds.get());
+    manager.setTimeout(_timeout.get());
     return true;
 }
 bool SatcommsStatusTask::startHook()

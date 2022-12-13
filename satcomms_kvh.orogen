@@ -25,7 +25,7 @@ import_types_from "std"
 task_context "SatcommsStatusTask" do
     needs_configuration
     property "url", "/std/string"
-    property "timeout_miliseconds", "/uint16_t"
+    property "timeout", "/base/Time"
     output_port "output", "/satcomms_kvh/SatcommsStatus"
     periodic 1.0
 end
