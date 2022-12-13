@@ -22,7 +22,8 @@ bool SatcommsStatusTask::configureHook()
     if (!SatcommsStatusTaskBase::configureHook())
         return false;
 
-    manager.setURL(_satcomms_website.get());
+    manager.setURL(_url.get());
+    manager.setTimeout(_timeout_miliseconds.get());
     return true;
 }
 bool SatcommsStatusTask::startHook()
