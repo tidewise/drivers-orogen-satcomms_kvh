@@ -22,8 +22,32 @@ import_types_from "satcomms_kvh/SatcommsStatusManager.hpp"
 import_types_from "std"
 # import_types_from "base"
 
+OroGen::Spec::Deployment.register_global_initializer(:curl)
+if defined?(OroGen::Gen::RTT_CPP::Deployment)
+    OroGen::Gen::RTT_CPP::Deployment.register_global_initializer(
+        :curl,
+        deployment_cmake: <<~GST_DEPLOYMENT_CMAKE,
+            find_package(CURL REQUIRED)
+            include_directories(${CURL_INCLUDE_DIRS})
+            target_link_libraries(<%= deployer.name %> ${CURL_LIBRARIES})
+        GST_DEPLOYMENT_CMAKE
+        global_scope: <<~GST_TOPLEVEL,
+            #include <curl/curl.h>
+        GST_TOPLEVEL
+        init: <<~GST_INIT,
+            curl_global_init(CURL_GLOBAL_ALL);
+        GST_INIT
+        exit: <<~GST_EXIT
+            curl_global_cleanup();
+        GST_EXIT
+    )
+end
+
+
 task_context "SatcommsStatusTask" do
     needs_configuration
+    needs_global_initializer :curl
+
     property "url", "/std/string"
     property "timeout", "/base/Time"
     output_port "output", "/satcomms_kvh/SatcommsStatus"
